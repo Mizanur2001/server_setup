@@ -52,12 +52,19 @@ echo "[8/9] Enabling unattended upgrades..."
 sudo apt install -y unattended-upgrades
 sudo dpkg-reconfigure --priority=low unattended-upgrades
 
-echo "[9/9] Setup finished!"
+# Install Certbot (Let's Encrypt)
+echo "[9/10] Installing Certbot for SSL..."
+sudo apt install -y certbot python3-certbot-nginx
+
+echo "Certbot installed successfully!"
+
+echo "[10/10] Setup finished!"
 echo "=========================================="
 echo " Server Setup Completed Successfully!"
 echo "=========================================="
 echo " Node:     $(node -v)"
 echo " PM2:      $(pm2 -v)"
 echo " NGINX:    $(nginx -v 2>&1)"
+echo " Certbot:  $(certbot --version)"
 echo " Firewall: UFW Active"
 echo "=========================================="
