@@ -29,7 +29,8 @@ echo "NPM version installed:  $(npm -v)"
 # Install PM2 globally
 echo "[4/9] Installing PM2..."
 sudo npm install pm2 -g
-pm2 startup systemd -y
+echo "Configuring PM2 startup..."
+sudo pm2 startup systemd --silent
 
 # Install NGINX
 echo "[5/9] Installing NGINX..."
