@@ -7,15 +7,15 @@ echo "   Initial Server Configuration Script"
 echo "=========================================="
 
 # Update & Upgrade
-echo "[1/9] Updating system..."
+echo "[1/10] Updating system..."
 sudo apt update -y && sudo apt upgrade -y
 
 # Install required packages
-echo "[2/9] Installing utilities..."
+echo "[2/10] Installing utilities..."
 sudo apt install -y curl wget git ufw fail2ban software-properties-common
 
 # Install Node.js LTS 24.11.1
-echo "[3/9] Installing Node.js LTS 24.11.1..."
+echo "[3/10] Installing Node.js LTS 24.11.1..."
 NODE_VERSION="v24.11.1"
 NODE_DISTRO="linux-x64"
 
@@ -27,28 +27,28 @@ echo "Node version installed: $(node -v)"
 echo "NPM version installed:  $(npm -v)"
 
 # Install PM2 globally
-echo "[4/9] Installing PM2..."
+echo "[4/10] Installing PM2..."
 sudo npm install pm2 -g
 echo "Configuring PM2 startup..."
 sudo pm2 startup systemd --silent
 
 # Install NGINX
-echo "[5/9] Installing NGINX..."
+echo "[5/10] Installing NGINX..."
 sudo apt install -y nginx
 sudo systemctl enable nginx
 
 # Firewall configuration
-echo "[6/9] Configuring UFW firewall..."
+echo "[6/10] Configuring UFW firewall..."
 sudo ufw allow OpenSSH
 sudo ufw allow 'Nginx Full'
 sudo ufw enable
 
 # Fail2ban
-echo "[7/9] Starting fail2ban..."
+echo "[7/10] Starting fail2ban..."
 sudo systemctl enable fail2ban
 sudo systemctl start fail2ban
 
-echo "[8/9] Enabling unattended upgrades..."
+echo "[8/10] Enabling unattended upgrades..."
 sudo apt install -y unattended-upgrades
 sudo dpkg-reconfigure --priority=low unattended-upgrades
 
